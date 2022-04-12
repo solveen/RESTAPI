@@ -4,9 +4,11 @@ package com.example.restapi.Service;
 import com.example.restapi.StudentRepositories.UserRepositories;
 import com.example.restapi.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class UserService {
     @Autowired
     UserRepositories userRepositories;
@@ -44,6 +46,11 @@ public class UserService {
         user1.setPassword(user.getPassword());
 
     return userRepositories.save(user1);
+    }
+
+    //for finding user by username
+    public User findByUserName(String userName){
+        return userRepositories.findByUserName(userName);
     }
 
 }
