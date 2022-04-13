@@ -37,7 +37,6 @@ public class UserService {
         userRepositories.deleteById(id);
         return "User removed !! " + id;
     }
-
     //Update user
     public User updateUser(User user){
         User user1 = userRepositories.findById(user.getId()).orElse(null);
@@ -49,7 +48,8 @@ public class UserService {
     }
 
     //for finding user by username
-    public User findByUserName(String userName){
+    public User findByUserName(String userName)
+    {
         return userRepositories.findByUserName(userName);
     }
 

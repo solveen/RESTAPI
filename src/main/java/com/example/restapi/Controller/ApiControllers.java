@@ -3,18 +3,27 @@ package com.example.restapi.Controller;
 import com.example.restapi.Service.UserService;
 import com.example.restapi.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 public class ApiControllers {
-
     @Autowired
     UserService userService;
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
+
+
     @PostMapping(value = "/save")
     public User saveUser(@RequestBody User user)
     {
+        String password = user.getPassword();
+        String encodePassword = bCryptPasswordEncoder.encode(password);
+        user.setPassword(encodePassword);
         return userService.saveUser(user);
     }
     @PostMapping("/saveAll")
@@ -22,7 +31,7 @@ public class ApiControllers {
         return userService.saveUsers(users);
     }
 
-    @GetMapping("getUsers")
+    @GetMapping("/getUsers")
     public List<User> getUsers(){
         return userService.getUsers();
     }
@@ -48,5 +57,4 @@ public class ApiControllers {
     public User customRepository(@PathVariable String userName){
         return userService.findByUserName(userName);
     }
-
 }
