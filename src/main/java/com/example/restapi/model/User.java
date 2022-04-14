@@ -14,17 +14,14 @@ import javax.persistence.*;
 @Table(name = "Student")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private int id;
-    @Column (name = "userName")
+    @Column(name = "userName")
     private String userName;
     @Column
     private String fullName;
     @Column
     private String password;
-
-
-
 
 
 }

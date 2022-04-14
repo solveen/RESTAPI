@@ -14,42 +14,43 @@ public class UserService {
     UserRepositories userRepositories;
 
     //save single user
-    public User saveUser(User user){
+    public User saveUser(User user) {
         return userRepositories.save(user);
     }
+
     //saves multiple users it needs to be send in array
-    public List<User> saveUsers(List<User> users){
+    public List<User> saveUsers(List<User> users) {
         return userRepositories.saveAll(users);
     }
 
     //Return the users in the list
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return userRepositories.findAll();
     }
 
     //Get user by id
-    public User getUserById(int id){
+    public User getUserById(int id) {
         return userRepositories.findById(id).orElse(null);
     }
 
     //Delete user
-    public String deleteById(int id){
+    public String deleteById(int id) {
         userRepositories.deleteById(id);
         return "User removed !! " + id;
     }
+
     //Update user
-    public User updateUser(User user){
+    public User updateUser(User user) {
         User user1 = userRepositories.findById(user.getId()).orElse(null);
         user1.setUserName(user.getUserName());
         user1.setFullName(user.getFullName());
         user1.setPassword(user.getPassword());
 
-    return userRepositories.save(user1);
+        return userRepositories.save(user1);
     }
 
     //for finding user by username
-    public User findByUserName(String userName)
-    {
+    public User findByUserName(String userName) {
         return userRepositories.findByUserName(userName);
     }
 
